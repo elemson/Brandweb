@@ -10,19 +10,27 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 
 //Route Files
+const auth = require("./routes/auth");
+
 const app = express();
 
+//Body Parser
 app.use(express.json());
+
 // app.get("/api/v1/bootcamps", (req, res) => {
 //   res.status(200).json({ success: true, msg: "show all" });
 // });
 
 //Dev logging middleware
-if (process.env.NODE_ENV === "develoment") {
+if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+//Mount routers
+app.use("/api/v1/auth", auth);
+
 app.use(errorHandler);
+
 const PORT = process.env.PORT || 5000;
 
 const server = app.listen(
