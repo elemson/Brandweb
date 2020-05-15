@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const mongoSanitize = require("express-moongo-sanitize");
+const helmet = require("helmet");
 const errorHandler = require("./middleware/error");
 
 const connectDB = require("./config/db");
@@ -32,7 +33,11 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+//Sanitize data
 app.use(mongoSanitize());
+
+//set security headers
+app.use(helmet());
 
 //Mount routers
 app.use("/api/v1/auth", auth);
