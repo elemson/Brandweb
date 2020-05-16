@@ -3,18 +3,24 @@ const User = require("../models/User");
 const asyncHandler = require("../middleware/async");
 const sendEmail = require("../utils/sendEmail");
 const ErrorResponse = require("../utils/errorResponse");
+const validateRegisterInput = require("../validation/register");
 const gravatar = require("gravatar");
 
 // @desc Register user
 // @route GET /api/v1/auth/register
 // @route Public
 exports.register = asyncHandler(async (req, res, next) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password } = req.body;
 
   const exist = await User.findOne({ email });
   //Check if user already exists
   if (exist) {
-    return next(new ErrorResponse({ email: "User already exists" }, 400));
+    return next(new ErrorResponse("User already exists", 400));
+  }
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
   }
 
   const avatar = gravatar.url(email, {
@@ -27,8 +33,6 @@ exports.register = asyncHandler(async (req, res, next) => {
     name,
     email,
     password,
-    avatar,
-    role,
   });
 
   //Create token

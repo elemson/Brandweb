@@ -3,16 +3,18 @@ import { Form, Button, Col } from "react-bootstrap";
 import classNames from "classnames";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../../redux/actions/authActions";
+import classnames from "classnames";
 
 const Register = (props) => {
   const dispatch = useDispatch();
 
-  const error = useSelector((state) => state.error);
+  const error = useSelector((state) => state.error.error);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [errors, errors] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ const Register = (props) => {
       name,
       email,
       password,
+      password2,
     };
 
     dispatch(registerUser(newUser));

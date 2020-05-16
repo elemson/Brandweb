@@ -5,7 +5,5 @@ export const registerUser = (userData) => (dispatch) => {
   axios
     .post("/api/v1/auth/register", userData)
     .then((res) => console.log(res))
-    .catch((err) =>
-      dispatch({ type: GET_ERRORS, payload: err.response.data.error })
-    );
+    .catch((err) => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
