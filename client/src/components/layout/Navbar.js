@@ -16,9 +16,9 @@ export default function Navigation() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto"></Nav>
         <Nav>
-          <Nav.Link href="#deets">More deets</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Dank memes
+          <Nav.Link href="/register">register</Nav.Link>
+          <Nav.Link eventKey={2} href="/">
+            login
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

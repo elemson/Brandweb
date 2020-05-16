@@ -1,60 +1,90 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button, Col } from "react-bootstrap";
+import classNames from "classnames";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../../redux/actions/authActions";
 
-export default function Register() {
+const Register = (props) => {
+  const dispatch = useDispatch();
+
+  const error = useSelector((state) => state.error);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const newUser = {
+      name,
+      email,
+      password,
+    };
+
+    dispatch(registerUser(newUser));
+
+    const errorDisplay = error ? console.log(error) : null;
+  };
+
   return (
     <div>
       <Form>
         <Form.Row>
+          <Form.Group as={Col} controlId="formGridName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="name"
+              placeholder="Enter name"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+          </Form.Group>
+        </Form.Row>
+        <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
           </Form.Group>
-
+        </Form.Row>
+        <Form.Row>
           <Form.Group as={Col} controlId="formGridPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
           </Form.Group>
         </Form.Row>
-
-        <Form.Group controlId="formGridAddress1">
-          <Form.Label>Address</Form.Label>
-          <Form.Control placeholder="1234 Main St" />
-        </Form.Group>
-
-        <Form.Group controlId="formGridAddress2">
-          <Form.Label>Address 2</Form.Label>
-          <Form.Control placeholder="Apartment, studio, or floor" />
-        </Form.Group>
-
         <Form.Row>
-          <Form.Group as={Col} controlId="formGridCity">
-            <Form.Label>City</Form.Label>
-            <Form.Control />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>State</Form.Label>
-            <Form.Control as="select" value="Choose...">
-              <option>Choose...</option>
-              <option>...</option>
-            </Form.Control>
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridZip">
-            <Form.Label>Zip</Form.Label>
-            <Form.Control />
+          <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="confirm password"
+              onChange={(e) => {
+                setPassword2(e.target.value);
+              }}
+            />
           </Form.Group>
         </Form.Row>
 
-        <Form.Group id="formGridCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
+        <Button variant="primary" type="submit" onClick={onSubmit}>
+          Register
         </Button>
       </Form>
     </div>
   );
-}
+};
+
+export default connect(null, { registerUser })(Register);

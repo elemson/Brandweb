@@ -19,7 +19,9 @@ const UserSchema = new mongoose.Schema({
     enum: ["user", "publisher"],
     default: "user",
   },
-
+  avatar: {
+    type: String,
+  },
   password: {
     type: String,
     required: [true, "Please add a password"],
