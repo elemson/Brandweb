@@ -19,6 +19,7 @@ export default function (state = intitialState, action) {
     case LOGIN_ERRORS:
       return {
         ...state,
+        user: {},
         error: action.payload,
       };
     default:

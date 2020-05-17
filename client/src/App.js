@@ -14,7 +14,8 @@ import Login from "./components/Auth/Login/Login";
 import Register from "./components/Auth/Register/Register";
 import Navigation from "./components/layout/Navbar";
 
-import profilePage from "./components/profilePage";
+import ProfilePage from "./components/profilePage/ProfilePage";
+import ProfileData from "./components/profilePage";
 
 //check for token
 
@@ -45,7 +46,7 @@ function App() {
             <Route exact path="/" component={Login} />
             <Route exact path="/register" component={Register} />
             <Switch>
-              <PrivateRoute exact path="/profile" component={profilePage} />
+              <PrivateRoute exact path="/profile" component={ProfileData} />
             </Switch>
           </div>
         </Router>

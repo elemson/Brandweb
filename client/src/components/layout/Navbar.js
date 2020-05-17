@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import { logoutUser } from "../../redux/actions/authActions";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
@@ -14,11 +14,8 @@ function Navigation({ history }) {
   };
 
   const authLinks = (
-    <Nav>
-      <Nav.Link href="" onClick={onLogoutClick}>
-        Logout
-      </Nav.Link>
-      <Nav.Link>Profile</Nav.Link>
+    <Nav className="mr-auto">
+      <Nav.Link onClick={onLogoutClick}>Logout</Nav.Link>
     </Nav>
   );
 
@@ -35,16 +32,22 @@ function Navigation({ history }) {
   );
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand>
-        {" "}
-        <Link to="/">Brandweb</Link>
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        {auth ? authLinks : guestLinks}
-      </Navbar.Collapse>
-    </Navbar>
+    <>
+      <Navbar bg="light" variant="light">
+        <Navbar.Brand className="mr-auto">
+          <Link to="/">
+            {" "}
+            <img
+              alt=""
+              src="https://et.brandweb.agency/wp-content/themes/brandwebagency/library/img/brand/Brandweb-logo.png"
+              className="d-inline-block align-top"
+            />
+          </Link>
+        </Navbar.Brand>
+
+        <Form inline>{auth ? authLinks : guestLinks}</Form>
+      </Navbar>
+    </>
   );
 }
 

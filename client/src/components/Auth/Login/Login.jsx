@@ -33,36 +33,48 @@ function Login({ history }) {
   ) : null;
 
   return (
-    <div>
-      <Form>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          {errors}
-        </Form.Group>
+    <>
+      <div class="container">
+        <div class="text-center">
+          <h2>Please Sign In </h2>
+          <div classnames="invalid-feedback is-invalid">{errors}</div>
+        </div>
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </Form.Group>
 
-        <Button variant="primary" onClick={onSubmit}>
-          Submit
-        </Button>
-      </Form>
-    </div>
+          <button
+            class="btn btn-lg btn-primary btn-block"
+            type="submit"
+            onClick={onSubmit}
+          >
+            Sign in
+          </button>
+          {/* <div class="text-center">
+            <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+          </div> */}
+        </Form>
+      </div>
+    </>
   );
 }
 export default withRouter(Login);
