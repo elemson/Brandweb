@@ -1,10 +1,12 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
+
+import PrivateRoute from "./components/common/PrivateRoute";
 
 import { setCurrentUser, logoutUser } from "./redux/actions/authActions";
 import Footer from "./components/layout/Footer";
@@ -42,7 +44,9 @@ function App() {
           <div className="App">
             <Route exact path="/" component={Login} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/profile" component={profilePage} />
+            <Switch>
+              <PrivateRoute exact path="/profile" component={profilePage} />
+            </Switch>
           </div>
         </Router>
       </Provider>
