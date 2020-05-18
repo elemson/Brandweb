@@ -67,7 +67,7 @@ app.use("/api/v1/auth", auth);
 app.use(errorHandler);
 
 //Serve static assets if in prpduction
-if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV === "production") {
   //Set static folder
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
