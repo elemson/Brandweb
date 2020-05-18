@@ -1,10 +1,10 @@
 # Brandweb Backend API specification
 
-> Brandweb back end Authentication. The frontend/UI was created in React, using Redux for state management.
+> Brandweb back end Authentication. The stack used include Node, express, and mongo DB
 
 # Usage
 
-Rename "config/config.env.env" to "config/config.env" and update the values/settings to your own
+Rename " Create "config/config.env" in the root folder and update the values/settings to your own
 
 ## Install Dependencies
 
@@ -39,7 +39,7 @@ npm start
   Once logged in, token is sent along with cookies
 
 - User Logout
-  Cookie us sent ro st token
+  Cookie is sent along with token
 
 - Password reset( lost password)
   Users can request a reset password
@@ -59,14 +59,29 @@ npm start
 - Protect against http param pollutin
 - Use cors to make API public (for now)
 - Prevent cross site scripting - XSS
-- Add a rate linit for requests of 100 requests per 10 minutes
+- Add a rate limit for requests of 100 requests per 10 minutes
 
 ## Documentation
 
 - Use postman to create documentation
-- Use docgen to create HTML files from Postman
-- Add html files as the /route for the api
 
 ## Deployment
 
 - Push to Github
+- Deployed to heroku
+
+# Front-end
+
+## Frame work
+
+- React
+- Css framework is Bootstrap and React-bootstrap
+
+## State management
+
+- Redux
+- Thunk middleware
+
+## Client side Authentication
+
+- Jwt Token
